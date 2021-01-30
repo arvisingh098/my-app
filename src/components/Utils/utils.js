@@ -62,6 +62,7 @@ return balanceEth;
 export const getTokenBalance = async (token, abi) => {
   if (account === '') return '0';
   const tokenContract = new web3.eth.Contract(abi, token);
+   console.log("inputAEValue");
   return tokenContract.methods.balanceOf(account).call();
 };
 
