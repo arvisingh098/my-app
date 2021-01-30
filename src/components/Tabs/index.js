@@ -186,7 +186,7 @@ useEffect(() => {
   };
 
   const getAmountsIns = async (inputValue, status) => {
-    let amount = await getAmountsIn(inputValue, status);
+    const amount = await getAmountsIn(inputValue, status);
     console.log("amountIn "+ amount);
     return amount;
   };
