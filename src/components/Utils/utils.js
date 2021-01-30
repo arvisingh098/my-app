@@ -141,7 +141,7 @@ export const addLiquidityContract = async (inputAEValue, inputAMValue) => {
   const oToken1 = new window.web3.eth.Contract(routerAbi, "0x44da2893eB4AEf2ed28fE2a333f4e9BF7949d92C");
   await oToken1.methods
     .addLiquidityETH("0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5", mainMask.toString(), main95Mask.toString(), main95Eth.toString(), account, Math.round((new Date()).getTime() / 1000)+1000)
-    .send({ from: account, value:  mainEth.toString() })
+    .send({ from: account, value:   new BigNumber(mainEth) })
     .on('transactionHash', (hash) => {
       console.log(hash);
     });
@@ -201,7 +201,7 @@ if((inputAEValue == 0) || inputRMValue == 0)
   const oToken1 = new window.web3.eth.Contract(routerAbi, "0x44da2893eB4AEf2ed28fE2a333f4e9BF7949d92C");
   await oToken1.methods
     .swapExactETHForTokens(mainMask.toString(), ["0xd0a1e359811322d97991e03f863a0c30c2cf029c", "0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5"], account, Math.round((new Date()).getTime() / 1000)+1000)
-    .send({ from: account, value:  mainEth.toString()})
+    .send({ from: account, value:  new BigNumber(mainEth)})
     .on('transactionHash', (hash) => {
       console.log(hash);
     });
