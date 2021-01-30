@@ -113,8 +113,8 @@ export const getAmountsIn = async (inputAEValue, status) => {
   console.log ("getAmountsIn " + inputAEValue);
   if(status == 1)
   {
-  const a = await tokenContract.methods.getAmountsOut(inputAEValue.toString(), ["0xd0a1e359811322d97991e03f863a0c30c2cf029c", "0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5"]).call();
-  console.log("jagveer " + a);
+  const a = await tokenContract.methods.getAmountsOut( new BigNumber(inputAEValue), ["0xd0a1e359811322d97991e03f863a0c30c2cf029c", "0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5"]).call();
+  console.log("jagveer- " + a);
   return a;
   }if(status == 2)
   return tokenContract.methods.getAmountsIn( new BigNumber(inputAEValue), ["0xd0a1e359811322d97991e03f863a0c30c2cf029c", "0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5"]).call();
