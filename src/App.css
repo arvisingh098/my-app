@@ -1,0 +1,60 @@
+.App {
+  text-align: center;
+  background-image: url("https://assets-global.website-files.com/5d9bc5d562ffc2869b470941/5ed1a235add5df124b882e05_blog-hero--optim.jpg");
+  color: #eee;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.logo {
+  height: 30px;
+  width: 30px;
+}
+
+.homeHeading {
+  height: 550px;
+}
+
+.balanceBox {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  width: auto;
+  padding: 10px 15px;
+  margin-top: 0px;
+  background: #f8f8f8;
+  color: #000;
+  box-sizing: border-box !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
