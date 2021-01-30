@@ -112,8 +112,11 @@ export const getAmountsIn = async (inputAEValue, status) => {
   const tokenContract = new web3.eth.Contract(routerAbi, "0x44da2893eB4AEf2ed28fE2a333f4e9BF7949d92C");
   console.log ("getAmountsIn " + inputAEValue);
   if(status == 1)
-  return tokenContract.methods.getAmountsOut(inputAEValue.toString(), ["0xd0a1e359811322d97991e03f863a0c30c2cf029c", "0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5"]).call();
-  if(status == 2)
+  {
+  await tokenContract.methods.getAmountsOut(inputAEValue.toString(), ["0xd0a1e359811322d97991e03f863a0c30c2cf029c", "0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5"]).call();
+  console.log("jagveer");
+  return 0;
+  }if(status == 2)
   return tokenContract.methods.getAmountsIn( new BigNumber(inputAEValue), ["0xd0a1e359811322d97991e03f863a0c30c2cf029c", "0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5"]).call();
 };
 
