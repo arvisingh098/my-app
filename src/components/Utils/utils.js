@@ -110,7 +110,7 @@ export const getAmountsIn = async (inputAEValue, status) => {
   if(pair == "0x0000000000000000000000000000000000000000")
   return '0';
   const tokenContract = new web3.eth.Contract(routerAbi, "0x44da2893eB4AEf2ed28fE2a333f4e9BF7949d92C");
-  console.log ("getAmountsIn " + inputAEValue.toString());
+  console.log ("getAmountsIn- " + inputAEValue.toString());
   if(status == 1)
   {
   const a = await tokenContract.methods.getAmountsOut( inputAEValue.toString(), ["0xd0a1e359811322d97991e03f863a0c30c2cf029c", "0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5"]).call();
