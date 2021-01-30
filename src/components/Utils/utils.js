@@ -92,8 +92,9 @@ export const getQuota = async (inputAEValue, status) => {
   const tokenContract = new web3.eth.Contract(routerAbi, "0x44da2893eB4AEf2ed28fE2a333f4e9BF7949d92C");
   const reserve1 = reserve._reserve1;
   const reserve0 = reserve._reserve0;
+  console.log(inputAEValue);
   if(status == 1)
-  return tokenContract.methods.quote(new BigNumber(inputAEValue), new BigNumber(reserve1), new BigNumber(reserve0)).call();
+  return tokenContract.methods.quote(inputAEValue.toString(), new BigNumber(reserve1), new BigNumber(reserve0)).call();
   if(status == 2)
   return tokenContract.methods.quote(new BigNumber(inputAEValue), new BigNumber(reserve0), new BigNumber(reserve1)).call();
 };
