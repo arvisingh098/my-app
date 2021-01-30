@@ -92,11 +92,10 @@ export const getQuota = async (inputAEValue, status) => {
   const tokenContract = new web3.eth.Contract(routerAbi, "0x44da2893eB4AEf2ed28fE2a333f4e9BF7949d92C");
   const reserve1 = reserve._reserve1;
   const reserve0 = reserve._reserve0;
-  console.log("getQuota " + inputAEValue);
   if(status == 1)
-  return tokenContract.methods.quote(inputAEValue.toString(), new BigNumber(reserve1), new BigNumber(reserve0)).call();
+  return tokenContract.methods.quote(inputAEValue.toString(), reserve1.toString(), reserve0.toString()).call();
   if(status == 2)
-  return tokenContract.methods.quote(new BigNumber(inputAEValue), new BigNumber(reserve0), new BigNumber(reserve1)).call();
+  return tokenContract.methods.quote(inputAEValue.toString(), reserve0.toString(), reserve1.toString()).call();
 };
 
 export const getAmountsIn = async (inputAEValue, status) => {
@@ -110,14 +109,11 @@ export const getAmountsIn = async (inputAEValue, status) => {
   if(pair == "0x0000000000000000000000000000000000000000")
   return '0';
   const tokenContract = new web3.eth.Contract(routerAbi, "0x44da2893eB4AEf2ed28fE2a333f4e9BF7949d92C");
-  console.log ("getAmountsIn- " + inputAEValue.toString());
   if(status == 1)
   {
-  const a = await tokenContract.methods.getAmountsOut( inputAEValue.toString(), ["0xd0a1e359811322d97991e03f863a0c30c2cf029c", "0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5"]).call();
-  console.log("jagveer- " + a);
-  return a;
+  return await tokenContract.methods.getAmountsOut( inputAEValue.toString(), ["0xd0a1e359811322d97991e03f863a0c30c2cf029c", "0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5"]).call();
   }if(status == 2)
-  return tokenContract.methods.getAmountsIn( new BigNumber(inputAEValue), ["0xd0a1e359811322d97991e03f863a0c30c2cf029c", "0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5"]).call();
+  return tokenContract.methods.getAmountsIn( inputAEValue.toString(), ["0xd0a1e359811322d97991e03f863a0c30c2cf029c", "0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5"]).call();
 };
 
 export const addLiquidityContract = async (inputAEValue, inputAMValue) => {
@@ -145,7 +141,7 @@ export const addLiquidityContract = async (inputAEValue, inputAMValue) => {
   const oToken1 = new window.web3.eth.Contract(routerAbi, "0x44da2893eB4AEf2ed28fE2a333f4e9BF7949d92C");
   await oToken1.methods
     .addLiquidityETH("0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5", mainMask.toString(), main95Mask.toString(), main95Eth.toString(), account, Math.round((new Date()).getTime() / 1000)+1000)
-    .send({ from: account, value:   new BigNumber(mainEth) })
+    .send({ from: account, value:  mainEth.toString() })
     .on('transactionHash', (hash) => {
       console.log(hash);
     });
@@ -172,10 +168,9 @@ export const removeLiquidityContract = async (inputAEValue) => {
   }
 
    let mainEth = await nonExpon(inputAEValue);
-  console.log(mainEth);
   const oToken1 = new window.web3.eth.Contract(routerAbi, "0x44da2893eB4AEf2ed28fE2a333f4e9BF7949d92C");
   await oToken1.methods
-    .removeLiquidityETH("0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5", mainEth.toString(), (new BigNumber(0)), (new BigNumber(0)), account, Math.round((new Date()).getTime() / 1000)+1000)
+    .removeLiquidityETH("0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5", mainEth.toString(), "0", "0", account, Math.round((new Date()).getTime() / 1000)+1000)
     .send({ from: account })
     .on('transactionHash', (hash) => {
       console.log(hash);
@@ -205,7 +200,7 @@ if((inputAEValue == 0) || inputRMValue == 0)
   const oToken1 = new window.web3.eth.Contract(routerAbi, "0x44da2893eB4AEf2ed28fE2a333f4e9BF7949d92C");
   await oToken1.methods
     .swapExactETHForTokens(mainMask.toString(), ["0xd0a1e359811322d97991e03f863a0c30c2cf029c", "0x554c84c3b44b26d365bb43f9f689b68d5a9edcd5"], account, Math.round((new Date()).getTime() / 1000)+1000)
-    .send({ from: account, value:  new BigNumber(mainEth)})
+    .send({ from: account, value:  mainEth.toString()})
     .on('transactionHash', (hash) => {
       console.log(hash);
     });

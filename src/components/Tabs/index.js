@@ -153,10 +153,6 @@ useEffect(() => {
     inputAESWAPValue1 = Math.round(inputAESWAPValue * 1000000000000000000);
     if(inputAMSWAPValue.toString().indexOf('.') !== -1)
     inputAMSWAPValue1 = Math.round(inputAMSWAPValue * 1000000000000000000);
-     console.log(inputAESWAPValue);
-    console.log(inputAESWAPValue1);
-    console.log(inputAMSWAPValue);
-    console.log(inputAMSWAPValue1);
     const liquidity = await addLiquidityContract(inputAESWAPValue1, inputAMSWAPValue1);
   };
 
@@ -167,11 +163,6 @@ useEffect(() => {
     inputSESWAPValue1 = Math.round(inputSESWAPValue * 1000000000000000000);
     if(inputSMSWAPValue.toString().indexOf('.') !== -1)
     inputSMSWAPValue1 = Math.round(inputSMSWAPValue * 1000000000000000000);
-
-    console.log(inputSESWAPValue);
-    console.log(inputSESWAPValue1);
-    console.log(inputSMSWAPValue);
-    console.log(inputSMSWAPValue1);
     const liquidity = await swapContract(inputSESWAPValue1, inputSMSWAPValue1);
   };
 
@@ -180,14 +171,12 @@ useEffect(() => {
   };
 
   const getQuotas = async (inputValue, status) => {
-    let quota = await getQuota(inputValue, status);
-    console.log(quota);
+    const quota = await getQuota(inputValue, status);
     return quota;
   };
 
   const getAmountsIns = async (inputValue, status) => {
     const amount = await getAmountsIn(inputValue, status);
-    console.log("amountIn "+ amount);
     return amount;
   };
 
